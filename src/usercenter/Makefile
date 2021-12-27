@@ -2,7 +2,6 @@ IMAGE_NAME=eviaocloud/k8s-learn-usercenter
 CONTAINER_NAME=k8s-learn-usercenter-container
 
 build:Dockerfile
-	mvn clean && mvn package
 	docker build -t ${IMAGE_NAME} .
 
 run:
