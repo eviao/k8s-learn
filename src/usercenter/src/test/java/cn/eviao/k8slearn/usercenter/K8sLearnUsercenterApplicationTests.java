@@ -1,4 +1,4 @@
-package cn.eviao.k8slearnusercenter;
+package cn.eviao.k8slearn.usercenter;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

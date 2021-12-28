@@ -1,4 +1,4 @@
-package cn.eviao.k8slearnusercenter.web;
+package cn.eviao.k8slearn.usercenter.web;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,4 +1,4 @@
-package cn.eviao.k8slearnusercenter.model;
+package cn.eviao.k8slearn.usercenter.model;
 
 import lombok.*;
 import org.hibernate.Hibernate;

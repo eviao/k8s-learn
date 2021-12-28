@@ -1,8 +1,8 @@
-package cn.eviao.k8slearnusercenter.web;
+package cn.eviao.k8slearn.usercenter.web;
 
-import cn.eviao.k8slearnusercenter.ParamsBindingException;
-import cn.eviao.k8slearnusercenter.model.User;
-import cn.eviao.k8slearnusercenter.service.UserService;
+import cn.eviao.k8slearn.usercenter.ParamsBindingException;
+import cn.eviao.k8slearn.usercenter.model.User;
+import cn.eviao.k8slearn.usercenter.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;

@@ -1,7 +1,7 @@
-package cn.eviao.k8slearnusercenter.service;
+package cn.eviao.k8slearn.usercenter.service;
 
-import cn.eviao.k8slearnusercenter.model.User;
-import cn.eviao.k8slearnusercenter.repository.UserRepository;
+import cn.eviao.k8slearn.usercenter.model.User;
+import cn.eviao.k8slearn.usercenter.repository.UserRepository;
 import com.google.common.collect.Lists;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;

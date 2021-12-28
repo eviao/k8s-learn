@@ -1,4 +1,4 @@
-package cn.eviao.k8slearnusercenter;
+package cn.eviao.k8slearn.usercenter;
 
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;

@@ -1,4 +1,4 @@
-package cn.eviao.k8slearnusercenter;
+package cn.eviao.k8slearn.usercenter;
 
 import com.google.common.collect.Maps;
 import org.springframework.boot.SpringApplication;
