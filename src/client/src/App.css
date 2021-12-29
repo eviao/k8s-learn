@@ -20,27 +20,27 @@ a:active {
   background-color: rgba(112, 76, 182, 0.2);
 }
 
-.App {
+.app {
   font-size: calc(10px + 1vmin);
 
   width: 60%;
   min-width: 960px;
   margin: 16px auto;
 }
-.App nav, .App main {
+.app nav, .app main {
   margin-top: 16px;
 }
-.App > .container {
+.app > .container {
   display: flex;
   flex-direction: row;
 }
-.App > .container > nav {
+.app > .container > nav {
   padding: 0 24px;
 }
-.App > .container > nav a {
+.app > .container > nav a {
   padding: 8px 32px;
 }
-.App > .container > main {
+.app > .container > main {
   flex-grow: 2;
 }
 

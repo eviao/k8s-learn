@@ -4,11 +4,10 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
+    <div className="app">
       <header>
         <h1>k8s-learn</h1>
       </header>
-      
       <div className="container">
         <nav>
           <a href="#">users</a>
