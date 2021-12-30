@@ -2,7 +2,13 @@ import { React, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import { fetchAllAsync } from './userSlice';
+import { 
+    startEdit, 
+    cancelEdit, 
+    setUser, 
+    fetchAllAsync, 
+    updateAsync,
+} from './userSlice';
 
 import styles from './User.module.css';
 
@@ -12,7 +18,7 @@ const dateFormat = (date) => dayjs(date).format('YYYY/MM/DD');
 const timeFormat = (date) => dayjs().to(date);
 
 export function User() {
-    const { list, status } = useSelector((rootState) => rootState.user);
+    const {list, status, editable, user} = useSelector((rootState) => rootState.user);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -32,9 +38,19 @@ export function User() {
                 </thead>
                 <tbody>
                     {list.map(it => (
-                        <tr key={it.id}>
+                        <tr key={it.id} onDoubleClick={() => dispatch(startEdit(it))}>
                             <td>{it.id}</td>
-                            <td>{it.name}</td>
+                            <td>
+                                {(editable && user.id == it.id) ? 
+                                <span>
+                                    <input value={user.name} onChange={(e) => dispatch(setUser(e.target.value))} />
+                                    <a href="#" onClick={() => dispatch(updateAsync(user))}>√</a>
+                                    <a href="#" onClick={() => dispatch(cancelEdit())}>×</a>
+                                </span>
+                                :
+                                <span>{it.name}</span>
+                                }
+                            </td>
                             <td>{dateFormat(it.createdAt)}</td>
                             <td>{timeFormat(it.updatedAt)}</td>
                         </tr>
