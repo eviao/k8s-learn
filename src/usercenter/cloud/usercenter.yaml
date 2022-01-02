@@ -19,6 +19,13 @@ spec:
         - name: k8s-learn-usercenter
           image: localhost:5000/k8s-learn-usercenter
           imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: 500m
+              memory: 128Mi
+            limits:
+              cpu: 1000m
+              memory: 256Mi
           livenessProbe:
             httpGet:
               path: /healthy
