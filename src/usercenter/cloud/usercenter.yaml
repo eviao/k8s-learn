@@ -18,7 +18,7 @@ spec:
       containers:
         - name: k8s-learn-usercenter
           image: localhost:5000/k8s-learn-usercenter
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           resources:
             requests:
               cpu: 500m
