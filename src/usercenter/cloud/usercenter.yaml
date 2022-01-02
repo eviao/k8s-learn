@@ -19,6 +19,14 @@ spec:
         - name: k8s-learn-usercenter
           image: localhost:5000/k8s-learn-usercenter
           imagePullPolicy: IfNotPresent
+          livenessProbe:
+            httpGet:
+              path: /healthy
+              port: 8000
+            initialDelaySeconds: 5
+            timeoutSeconds: 1
+            periodSeconds: 10
+            failureThreshold: 3
           ports:
             - containerPort: 8000
 ---
