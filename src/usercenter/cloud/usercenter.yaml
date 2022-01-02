@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-learn-usercenter
+  labels:
+    app: usercenter
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: usercenter
+  template:
+    metadata:
+      name: k8s-learn-usercenter
+      labels:
+        app: usercenter
+    spec:
+      containers:
+        - name: k8s-learn-usercenter
+          image: localhost:5000/k8s-learn-usercenter
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8s-learn-usercenter
+  labels:
+    app: usercenter
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 8000
+  selector:
+    app: usercenter
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: k8s-learn-usercenter
+  labels:
+    app: usercenter
+spec:
+  defaultBackend:
+    service:
+      name: k8s-learn-usercenter
+      port:
+        number: 80
