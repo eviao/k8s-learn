@@ -1,23 +1,21 @@
 import React from 'react';
-import { User } from './features/user/User';
+import { Routes, Route } from 'react-router-dom';
+import { Home } from './features/home/Home';
+import { Register } from './features/user/Register';
+import { Login } from './features/session/Login';
+import './mvp.css';
 import './App.css';
 
 function App() {
-    return (
-        <div className="app">
-            <header>
-                <h1>k8s-learn</h1>
-            </header>
-            <div className="container">
-                <nav>
-                    <a href="#">users</a>
-                </nav>
-                <main>
-                    <User />
-                </main>
-            </div>
-        </div>
-    );
+  return (
+    <>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/session/login" element={<Login />} />
+        <Route path="/user/register" element={<Register />} />
+      </Routes>
+    </>
+  );
 }
 
 export default App;

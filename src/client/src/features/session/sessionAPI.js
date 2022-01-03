@@ -1,5 +1,5 @@
-export async function register(user) {
-  return await fetch('http://localhost:8000/user/register', {
+export async function login(user) {
+  return await fetch('http://localhost:8000/session/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
