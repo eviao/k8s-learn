@@ -1,16 +1,15 @@
 package cn.eviao.k8slearn.usercenter.service;
 
-import cn.eviao.k8slearn.usercenter.model.User;
+import cn.eviao.k8slearn.usercenter.entity.User;
+import cn.eviao.k8slearn.usercenter.model.SessionUser;
 import cn.eviao.k8slearn.usercenter.repository.UserRepository;
-import com.google.common.collect.Lists;
-import org.apache.logging.log4j.util.Strings;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -18,9 +17,16 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private HttpSession session;
 
-    public User create(User user) {
-        user.setName(user.getName().trim());
+    private String digestPassword(String password) {
+        return new String(DigestUtils.sha256Hex(password));
+    }
+
+    public User register(User user) {
+        var password = digestPassword(user.getPassword());
+        user.setPassword(password);
 
         var now = LocalDateTime.now();
         user.setCreatedAt(now);
@@ -29,34 +35,22 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User update(Integer id, User user) {
-        return userRepository.findById(id)
-                .map(it -> {
-                    if (Strings.isNotBlank(user.getName())) {
-                        it.setName(user.getName());
-                    }
-                    it.setUpdatedAt(LocalDateTime.now());
-                    return userRepository.save(it);
-                })
-                .orElseThrow();
-    }
-
-    public boolean delete(Integer id) {
-        if (userRepository.existsById(id)) {
-            userRepository.deleteById(id);
-            return true;
+    @Transactional(readOnly = true)
+    public boolean login(String username, String password) {
+        var user = userRepository.findByEmail(username);
+        if (user == null) {
+            return false;
+        }
+        if (!user.getPassword().equals(digestPassword(password))) {
+            return false;
         }
 
-        return false;
+        session.setAttribute("user", new SessionUser(user));
+        return true;
     }
 
     @Transactional(readOnly = true)
-    public Optional<User> findById(Integer id) {
-        return userRepository.findById(id);
-    }
-
-    @Transactional(readOnly = true)
-    public List<User> findAll() {
-        return Lists.newArrayList(userRepository.findAll());
+    public void logout() {
+        session.invalidate();
     }
 }
