@@ -36,17 +36,19 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public boolean login(String username, String password) {
-        var user = userRepository.findByEmail(username);
+    public SessionUser login(String email, String password) {
+        var user = userRepository.findByEmail(email);
         if (user == null) {
-            return false;
+            return null;
         }
         if (!user.getPassword().equals(digestPassword(password))) {
-            return false;
+            return null;
         }
 
-        session.setAttribute("user", new SessionUser(user));
-        return true;
+        var sessionUser = new SessionUser(user);
+        session.setAttribute("user", sessionUser);
+
+        return sessionUser;
     }
 
     @Transactional(readOnly = true)
