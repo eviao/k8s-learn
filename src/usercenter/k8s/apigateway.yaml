@@ -1,0 +1,12 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: api-gateway
+  labels:
+    app: api-gateway
+spec:
+  defaultBackend:
+    service:
+      name: user-service
+      port:
+        number: 80
