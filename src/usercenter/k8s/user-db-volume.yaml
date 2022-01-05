@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: user-db-pv
+  labels:
+    app: user-db
+spec:
+  accessModes:
+    - ReadWriteMany
+  capacity:
+    storage: 200Mi
+  nfs:
+    server: "172.17.0.3"
+    path: "/data"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: user-db-claim
+spec:
+  selector:
+    matchLabels:
+      app: user-db
+  resources:
+    requests:
+      storage: 200Mi
+  accessModes:
+    - ReadWriteMany
+  storageClassName: ""
