@@ -1,0 +1,43 @@
+.header {
+  padding: 0;
+}
+.header > nav {
+  color: #f5f6f7;
+  background: #5f51fc;
+  padding: 24px 24px 8px 24px;
+  margin-bottom: 0;
+  border-radius: 8px;
+}
+.logo {
+  font-size: 2rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-transform: uppercase;
+}
+.links {
+  background: #7977f70b;
+  padding: 32px 0;
+}
+.links section aside {
+  background: #fff;
+  background-size: cover;
+}
+.links section aside hr {
+  margin: 4px 0;
+}
+.links .creator {
+  color: #fff;
+  font-size: 6rem;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  text-align: center;
+  background: #09e670cc !important;
+}
+.links .creator:hover {
+  cursor: pointer;
+}
+.links .actions {
+  font-size: 0.8rem;
+  text-align: right;
+  padding: 0 4px;
+}
