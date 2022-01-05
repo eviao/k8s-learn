@@ -7,7 +7,7 @@ spring:
     hibernate:
       ddl-auto: 'create-drop'
   datasource:
-    url: jdbc:h2:mem:linkmanager
+    url: jdbc:h2:mem:linkmanager_db
     driver-class-name: org.h2.Driver
   h2:
     console:
