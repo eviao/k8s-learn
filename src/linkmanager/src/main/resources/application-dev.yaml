@@ -15,3 +15,7 @@ spring:
       path: /h2-console
       settings:
         web-allow-others: false
+
+service:
+  usercenter:
+    url: http://localhost:8000

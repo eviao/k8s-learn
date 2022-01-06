@@ -4,6 +4,7 @@ import cn.eviao.k8slearn.linkmanager.service.UserService;
 import com.google.common.collect.Maps;
 import feign.Feign;
 import feign.jackson.JacksonDecoder;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -38,11 +39,14 @@ class GlobalExceptionHandler {
 
 @Configuration
 class BeansConfig {
+	@Value("${service.usercenter.url}")
+	private String usercenterUrl;
+
 	@Bean
 	public UserService userService() {
 		return Feign.builder()
 				.decoder(new JacksonDecoder())
-				.target(UserService.class, "http://localhost:8000");
+				.target(UserService.class, usercenterUrl);
 	}
 }
 
