@@ -1,8 +1,7 @@
 package cn.eviao.k8slearn.usercenter.web;
 
-import cn.eviao.k8slearn.usercenter.ApplicationException;
 import cn.eviao.k8slearn.usercenter.entity.User;
-import cn.eviao.k8slearn.usercenter.model.Result;
+import cn.eviao.k8slearn.usercenter.entity.Result;
 import cn.eviao.k8slearn.usercenter.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +17,7 @@ public class SessionController {
     public Result login(@RequestBody User user) {
         var sessionUser = userService.login(user.getEmail(), user.getPassword());
         if (sessionUser == null) {
-            throw new ApplicationException("登录失败");
+            throw new RuntimeException("登录失败");
         }
         return Result.create("登录成功", sessionUser);
     }

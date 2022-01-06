@@ -1,7 +1,7 @@
 package cn.eviao.k8slearn.usercenter.service;
 
 import cn.eviao.k8slearn.usercenter.entity.User;
-import cn.eviao.k8slearn.usercenter.model.SessionUser;
+import cn.eviao.k8slearn.usercenter.entity.SessionUser;
 import cn.eviao.k8slearn.usercenter.repository.UserRepository;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;

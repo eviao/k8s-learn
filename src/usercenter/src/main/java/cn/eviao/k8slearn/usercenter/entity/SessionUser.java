@@ -1,6 +1,5 @@
-package cn.eviao.k8slearn.usercenter.model;
+package cn.eviao.k8slearn.usercenter.entity;
 
-import cn.eviao.k8slearn.usercenter.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

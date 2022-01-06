@@ -1,7 +1,7 @@
 package cn.eviao.k8slearn.usercenter.web;
 
 import cn.eviao.k8slearn.usercenter.entity.User;
-import cn.eviao.k8slearn.usercenter.model.Result;
+import cn.eviao.k8slearn.usercenter.entity.Result;
 import cn.eviao.k8slearn.usercenter.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
