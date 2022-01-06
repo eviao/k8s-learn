@@ -16,6 +16,7 @@
 	<properties>
 		<java.version>17</java.version>
 		<guava.version>31.0.1-jre</guava.version>
+		<feign.version>11.8</feign.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -29,6 +30,19 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/io.github.openfeign/feign-core -->
+		<dependency>
+			<groupId>io.github.openfeign</groupId>
+			<artifactId>feign-core</artifactId>
+			<version>${feign.version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.github.openfeign/feign-jackson -->
+		<dependency>
+			<groupId>io.github.openfeign</groupId>
+			<artifactId>feign-jackson</artifactId>
+			<version>${feign.version}</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->

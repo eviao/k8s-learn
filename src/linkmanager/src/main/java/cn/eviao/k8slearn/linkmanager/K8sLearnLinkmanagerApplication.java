@@ -1,8 +1,12 @@
 package cn.eviao.k8slearn.linkmanager;
 
+import cn.eviao.k8slearn.linkmanager.service.UserService;
 import com.google.common.collect.Maps;
+import feign.Feign;
+import feign.jackson.JacksonDecoder;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -29,6 +33,16 @@ class GlobalExceptionHandler {
 		var body = Maps.newHashMap();
 		body.put("errors", e.getMessage());
 		return ResponseEntity.internalServerError().body(body);
+	}
+}
+
+@Configuration
+class BeansConfig {
+	@Bean
+	public UserService userService() {
+		return Feign.builder()
+				.decoder(new JacksonDecoder())
+				.target(UserService.class, "http://localhost:8000");
 	}
 }
 

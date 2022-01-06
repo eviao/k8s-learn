@@ -12,3 +12,16 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: root
+  session:
+    store-type: redis
+  redis:
+    host: user-session.default.svc.cluster.local
+    port: 6379
+    database: 0
+    password:
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: -1
+        min-idle: 0
+        max-idle: 8

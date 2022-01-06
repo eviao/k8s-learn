@@ -1,7 +1,13 @@
-import { React } from 'react';
+import { React, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { setAddable, setForm, createAsync, removeAsync } from './linkSlice';
+import {
+  setAddable,
+  setForm,
+  createAsync,
+  removeAsync,
+  findAllByUseridAsync,
+} from './linkSlice';
 
 import styles from './Link.module.css';
 
@@ -10,8 +16,23 @@ export function Link() {
   const { user } = useSelector((root) => root.session);
   const { addable, form, links } = useSelector((root) => root.link);
 
+  useEffect(() => {
+    (() => {
+      if (!user) {
+        return;
+      }
+      dispatch(findAllByUseridAsync(user.id));
+    })();
+  }, []);
+
   const submitForm = (e) => {
-    dispatch(createAsync(form));
+    dispatch(
+      createAsync({
+        ...form,
+        userid: user.id,
+        username: user.name,
+      })
+    );
   };
 
   const updateField = (e) => {

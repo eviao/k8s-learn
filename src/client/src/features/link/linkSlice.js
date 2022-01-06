@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { create, remove } from './linkAPI';
+import { create, remove, findAllByUserid } from './linkAPI';
 
 const initialState = {
   status: '',
@@ -14,6 +14,11 @@ const initialState = {
 export const createAsync = createAsyncThunk('link/create', create);
 
 export const removeAsync = createAsyncThunk('link/remove', remove);
+
+export const findAllByUseridAsync = createAsyncThunk(
+  'link/findAllByUserid',
+  findAllByUserid
+);
 
 export const linkSlice = createSlice({
   name: 'link',
@@ -50,7 +55,16 @@ export const linkSlice = createSlice({
       })
       .addCase(removeAsync.fulfilled, (state, action) => {
         state.status = '已完成';
-        state.links = state.links.filter((it) => it.id !== action.payload);
+        state.links = state.links.filter((it) => it.id !== action.payload.data);
+      });
+
+    builder
+      .addCase(findAllByUseridAsync.pending, (state) => {
+        state.status = '加载中';
+      })
+      .addCase(findAllByUseridAsync.fulfilled, (state, action) => {
+        state.status = '已完成';
+        state.links = action.payload.data;
       });
   },
 });

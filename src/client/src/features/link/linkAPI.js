@@ -17,3 +17,11 @@ export async function remove(id) {
     .then((resp) => resp.json())
     .then(({ data }) => data);
 }
+
+export async function findAllByUserid(userid) {
+  return await fetch(`http://localhost:8001/links/user/${userid}`, {
+    method: 'GET',
+  })
+    .then((resp) => resp.json())
+    .then((data) => data);
+}

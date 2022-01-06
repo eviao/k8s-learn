@@ -22,6 +22,12 @@ public class LinkController {
     @DeleteMapping("/{id}")
     public Result delete(@PathVariable Integer id) {
         linkService.delete(id);
-        return Result.create("删除成功");
+        return Result.create(id);
+    }
+
+    @GetMapping("/user/{userid}")
+    public Result findAllByUserid(@PathVariable Integer userid) {
+        var list = linkService.findAllByUserid(userid);
+        return Result.create(list);
     }
 }

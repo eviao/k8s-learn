@@ -36,6 +36,11 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
+    public User findById(Integer id) {
+        return userRepository.findById(id).orElse(null);
+    }
+
+    @Transactional(readOnly = true)
     public SessionUser login(String email, String password) {
         var user = userRepository.findByEmail(email);
         if (user == null) {
