@@ -24,7 +24,12 @@
 .links section aside hr {
   margin: 4px 0;
 }
-.links .creator {
+.links section aside input,
+.links section aside textarea {
+  font-size: 0.8rem;
+  resize: none;
+}
+.links .add {
   color: #fff;
   font-size: 6rem;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
@@ -33,8 +38,15 @@
   text-align: center;
   background: #09e670cc !important;
 }
-.links .creator:hover {
+.links .add:hover {
   cursor: pointer;
+}
+.links .form form {
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  text-align: left;
 }
 .links .actions {
   font-size: 0.8rem;
