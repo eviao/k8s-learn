@@ -15,7 +15,7 @@ export async function remove(id) {
     method: 'DELETE',
   })
     .then((resp) => resp.json())
-    .then(({ data }) => data);
+    .then((data) => data);
 }
 
 export async function findAllByUserid(userid) {
