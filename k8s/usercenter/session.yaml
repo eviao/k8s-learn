@@ -2,17 +2,15 @@ apiVersion: v1
 kind: Service
 metadata:
   name: user-session
-  labels:
-    app: user-session
 spec:
   type: ClusterIP
   clusterIP: None
+  selector:
+    app: user-session
   ports:
     - port: 6379
       protocol: TCP
       targetPort: 6379
-  selector:
-    app: user-session
 ---
 apiVersion: apps/v1
 kind: StatefulSet
@@ -35,12 +33,5 @@ spec:
         - name: user-session
           image: redis:6.2
           imagePullPolicy: IfNotPresent
-          resources:
-            requests:
-              cpu: 0.5
-              memory: 200Mi
-            limits:
-              cpu: 1
-              memory: 500Mi
           ports:
             - containerPort: 6379

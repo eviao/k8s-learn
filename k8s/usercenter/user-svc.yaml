@@ -1,38 +1,37 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: user-service
+  name: user-svc
   labels:
-    app: user-service
+    app: user-svc
 spec:
   type: ClusterIP
+  selector:
+    app: user-svc
   sessionAffinity: None
   ports:
-    - port: 80
+    - port: 8000
       protocol: TCP
       targetPort: 8000
-  selector:
-    app: user-service
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: user-service
+  name: user-svc
   labels:
-    app: user-service
+    app: user-svc
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: user-service
+      app: user-svc
   template:
     metadata:
-      name: user-service
       labels:
-        app: user-service
+        app: user-svc
     spec:
       containers:
-        - name: user-service
+        - name: user-svc
           image: localhost:5000/k8s-learn-usercenter
           imagePullPolicy: Always
           resources:

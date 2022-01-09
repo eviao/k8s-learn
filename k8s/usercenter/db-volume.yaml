@@ -5,18 +5,18 @@ metadata:
   labels:
     app: user-db
 spec:
-  accessModes:
-    - ReadWriteMany
   capacity:
     storage: 200Mi
+  accessModes:
+    - ReadWriteMany
   nfs:
-    server: "172.17.0.3"
-    path: "/data"
+    server: 192.168.31.248
+    path: /data/mysql
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: user-db-claim
+  name: user-db-pvc
 spec:
   selector:
     matchLabels:

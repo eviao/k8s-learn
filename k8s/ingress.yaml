@@ -2,11 +2,9 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: api-gateway
-  labels:
-    app: api-gateway
 spec:
   defaultBackend:
     service:
-      name: user-service
+      name: user-svc
       port:
-        number: 80
+        number: 8000

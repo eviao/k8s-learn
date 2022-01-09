@@ -4,12 +4,11 @@ metadata:
   name: user-db
 spec:
   type: ClusterIP
-  sessionAffinity: None
+  selector:
+    app: user-db
   ports:
     - port: 3306
       protocol: TCP
-  selector:
-    app: user-db
 ---
 apiVersion: apps/v1
 kind: ReplicaSet
@@ -31,22 +30,15 @@ spec:
         - name: user-db
           image: mysql:8
           imagePullPolicy: IfNotPresent
-          resources:
-            requests:
-              cpu: 1
-              memory: 512Mi
           env:
             - name: MYSQL_ROOT_PASSWORD
               value: root
-          livenessProbe:
-            tcpSocket:
-              port: 3306
           ports:
             - containerPort: 3306
-#          volumeMounts:
-#            - name: user-db
-#              mountPath: "/var/lib/mysql"
-#      volumes:
-#        - name: user-db
-#          persistentVolumeClaim:
-#            claimName: user-db-claim
+          volumeMounts:
+            - name: user-db
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: user-db
+          persistentVolumeClaim:
+            claimName: user-db-pvc
