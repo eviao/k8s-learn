@@ -9,6 +9,7 @@ spec:
     storage: 200Mi
   accessModes:
     - ReadWriteMany
+  persistentVolumeReclaimPolicy: Recycle
   nfs:
     server: 192.168.31.248
     path: /data/mysql
