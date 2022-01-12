@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: user-db-pv
+  name: link-db-pv
   labels:
-    app: user-db
+    app: link-db
 spec:
   capacity:
     storage: 200Mi
@@ -12,16 +12,16 @@ spec:
   persistentVolumeReclaimPolicy: Recycle
   nfs:
     server: 192.168.31.248
-    path: /data/user/mysql
+    path: /data/link/mysql
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: user-db-pvc
+  name: link-db-pvc
 spec:
   selector:
     matchLabels:
-      app: user-db
+      app: link-db
   resources:
     requests:
       storage: 200Mi
