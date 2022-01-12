@@ -32,7 +32,10 @@ spec:
           imagePullPolicy: IfNotPresent
           env:
             - name: MYSQL_ROOT_PASSWORD
-              value: root
+              valueFrom:
+                secretKeyRef:
+                  name: user-sec
+                  key: mysql-password
           ports:
             - containerPort: 3306
           volumeMounts:
@@ -42,3 +45,6 @@ spec:
         - name: user-db
           persistentVolumeClaim:
             claimName: user-db-pvc
+        - name: user-sec
+          secret:
+            secretName: user-sec
