@@ -1,9 +1,9 @@
-FROM openjdk:17.0.1-slim
+FROM openjdk:17-slim
 
 LABEL author="eviao@live.cn"
 
-WORKDIR /apps
+WORKDIR /app
 COPY target/*.jar ./k8s-learn-usercenter.jar
 
 EXPOSE 8000
-CMD ["java", "-jar", "/apps/k8s-learn-usercenter.jar"]
+CMD ["java", "-jar", "/app/k8s-learn-usercenter.jar"]
