@@ -1,0 +1,8 @@
+FROM openjdk:17-slim
+
+LABEL author="eviao@live.cn"
+
+WORKDIR /app
+COPY target/*.jar ./k8s-learn-linkmanager.jar
+EXPOSE 8001
+CMD ["java", "-jar", "/app/k8s-learn-linkmanager.jar"]
