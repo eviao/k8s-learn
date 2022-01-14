@@ -104,7 +104,7 @@ export function Link() {
               key={it.id}
               style={
                 {
-                  // backgroundImage: `url('${images[idx]}')`,
+                  backgroundImage: `url('${it.screen}')`,
                 }
               }
             >

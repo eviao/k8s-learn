@@ -1,6 +1,5 @@
 package cn.eviao.k8slearn.linkmanager.entity;
 
-import com.google.common.base.Objects;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -11,6 +10,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -38,6 +38,9 @@ public class Link implements Serializable {
     private String url;
 
     @Column
+    private String screen;
+
+    @Column
     private Integer userid;
 
     @Column
@@ -54,11 +57,11 @@ public class Link implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Link link = (Link) o;
-        return Objects.equal(id, link.id) && Objects.equal(name, link.name) && Objects.equal(description, link.description) && Objects.equal(url, link.url) && Objects.equal(userid, link.userid) && Objects.equal(username, link.username) && Objects.equal(createdAt, link.createdAt) && Objects.equal(updatedAt, link.updatedAt);
+        return Objects.equals(id, link.id) && Objects.equals(name, link.name) && Objects.equals(description, link.description) && Objects.equals(url, link.url) && Objects.equals(screen, link.screen) && Objects.equals(userid, link.userid) && Objects.equals(username, link.username) && Objects.equals(createdAt, link.createdAt) && Objects.equals(updatedAt, link.updatedAt);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id, name, description, url, userid, username, createdAt, updatedAt);
+        return Objects.hash(id, name, description, url, screen, userid, username, createdAt, updatedAt);
     }
 }
