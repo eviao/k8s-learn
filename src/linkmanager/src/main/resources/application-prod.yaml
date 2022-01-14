@@ -1,0 +1,20 @@
+server:
+  port: 8001
+
+spring:
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: create
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+  datasource:
+    url: jdbc:mysql://link-db.default.svc.cluster.local:3306/linkmanager_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+
+service:
+  usercenter:
+    url: http://localhost:8000
+  linkmanager-sotu:
+    url: http://localhost:8002
