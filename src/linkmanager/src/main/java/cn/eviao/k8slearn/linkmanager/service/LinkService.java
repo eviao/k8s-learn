@@ -19,6 +19,8 @@ public class LinkService {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private LinkSotuService linkSotuService;
 
     public Link create(Link link) {
         var user = userService.findById(link.getUserid());
@@ -28,7 +30,12 @@ public class LinkService {
         var now = LocalDateTime.now();
         link.setCreatedAt(now);
         link.setUpdatedAt(now);
-        return linkRepository.save(link);
+
+        var persisted = linkRepository.save(link);
+
+        linkSotuService.createTask(persisted);
+
+        return persisted;
     }
 
     public void delete(Integer id) {

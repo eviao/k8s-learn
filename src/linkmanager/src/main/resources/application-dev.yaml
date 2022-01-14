@@ -19,3 +19,5 @@ spring:
 service:
   usercenter:
     url: http://localhost:8000
+  linkmanager-sotu:
+    url: http://localhost:8002

@@ -1,5 +1,6 @@
 package cn.eviao.k8slearn.linkmanager;
 
+import cn.eviao.k8slearn.linkmanager.service.LinkSotuService;
 import cn.eviao.k8slearn.linkmanager.service.UserService;
 import com.google.common.collect.Maps;
 import feign.Feign;
@@ -41,12 +42,21 @@ class GlobalExceptionHandler {
 class BeansConfig {
 	@Value("${service.usercenter.url}")
 	private String usercenterUrl;
+	@Value("${service.linkmanager-sotu.url}")
+	private String linkmanagerSotuUrl;
 
 	@Bean
 	public UserService userService() {
 		return Feign.builder()
 				.decoder(new JacksonDecoder())
 				.target(UserService.class, usercenterUrl);
+	}
+
+	@Bean
+	public LinkSotuService linkSotuService() {
+		return Feign.builder()
+				.decoder(new JacksonDecoder())
+				.target(LinkSotuService.class, linkmanagerSotuUrl);
 	}
 }
 
