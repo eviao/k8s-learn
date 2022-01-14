@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: link-sotu-pv
+  labels:
+    app: link-sotu
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Recycle
+  nfs:
+    server: 192.168.31.248
+    path: /data/link/screenshot
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: link-sotu-pvc
+spec:
+  selector:
+    matchLabels:
+      app: link-sotu
+  resources:
+    requests:
+      storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  storageClassName: ""
