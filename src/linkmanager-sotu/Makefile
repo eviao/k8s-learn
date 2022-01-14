@@ -1,5 +1,4 @@
-CONTAINER_NAME=k8s-learn-linkmanager-sotu
-IMAGE_NAME=localhost:5000/${CONTAINER_NAME}
+IMAGE_NAME=localhost:5000/k8s-learn-linkmanager-sotu
 
 build:Dockerfile
     docker build -t ${IMAGE_NAME} .

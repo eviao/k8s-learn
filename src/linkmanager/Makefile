@@ -1,4 +1,4 @@
-IMAGE_NAME=localhost:5000//k8s-learn-client
+IMAGE_NAME=localhost:5000/k8s-learn-linkmanager
 
 build:Dockerfile
 	docker build -t ${IMAGE_NAME} .
